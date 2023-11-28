@@ -54,7 +54,7 @@ cd /usr/local/lib/tomcat9/bin
 sudo chown -R <유저>:<그룹> <대상> 
 ```
 톰캣 매니저 HTML출력으로 정상 작동 확인 시 종료
-![image](https://github.com/tthingbini/petclinic_3Tier/assets/137377076/1c7ec0ed-4656-409a-8360-cc265dcf3c28)
+<img src="https://github.com/tthingbini/petclinic_3Tier/assets/137377076/1c7ec0ed-4656-409a-8360-cc265dcf3c28">
 
 ### petclinic 빌드 & Tomcat 저장
 ```

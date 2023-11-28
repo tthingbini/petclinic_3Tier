@@ -4,7 +4,8 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=alert_status)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=coverage)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 
-GCP Cloud 과제 수행을 위한 Java Spring 으로 개발된 Sample Application 입니다. 
+GCP Cloud 과제 수행을 위한 Java Spring 으로 개발된 Sample Application 입니다.
+AWS 
 
 **3-layer architecture** (i.e. presentation --> service --> repository) 로 Tomcat 에 배포하여 2 Tier 로 구성하거나
 또는 nginx 등의 Web 서버를 통해서 Tomcat 을 연결하는 3 Tier 구성을 테스트할 수 있습니다. 
@@ -14,6 +15,14 @@ GCP Cloud 과제 수행을 위한 Java Spring 으로 개발된 Sample Applicatio
 [See the presentation here](http://fr.slideshare.net/AntoineRey/spring-framework-petclinic-sample-application) (2017 update)
 
 ## Running petclinic locally
+
+### Java, Git 설치
+```
+sudo yum update -y
+sudo yum install java -y
+sudo alternatives --config java // java버전 선택
+sudo yum install git -y
+```
 
 ### Tomcat 설치 및 Start
 Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
@@ -37,12 +46,48 @@ Tomcat 을 실행 ( 위의 Tomcat 설치 가이드를 통해서 이미 실행되
 ```
 $TOMCAT_HOME/bin/catalina.sh start
 ```
+### Tomcat 설치 및 Start
+Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
 
-### Tomcat 배포 ( H2 In-memory Database 활용 )
+[ Amazon Linux2 : Tomcat 9 설치하는 방법 ](https://progtrend.blogspot.com/2018/07/aws-amazon-linux-2-tomcat-9.html)
+
+Tomcat9 설치
+
 ```
-git clone https://github.com/SteveKimbespin/petclinic_btc.git 
-cd petclinic_btc
-./mvnw tomcat7:deploy
+cd /usr/local/lib // Tomcat 컴파일 디렉토리로 이동
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz //tomcat 컴파일 설치
+tar xvf apache-tomcat-9.0.78.tar.gz //압축해제
+mv apache-tomcat-9.0.78 ./tomcat9 //디렉토리명 수정
+```
+
+Tomcat9 시작 및 작동 테스트
+
+```
+cd /usr/local/lib/tomcat9/bin //톰캣 사용관련 app 디렉토리로 이동
+./start.sh // 톰캣 시작 테스트
+./shutdwon.sh // 톰캣 종료
+```
+
+권한 문제가 발생할 경우 유저:그룹 체크
+```
+sudo chown -R <유저>:<그룹> <대상> //재귀적으로 대상의 유저와 그룹을 변경.
+```
+톰캣 매니저 HTML출력으로 정상 작동 확인 시 종료.
+![image](https://github.com/tthingbini/petclinic_3Tier/assets/137377076/1c7ec0ed-4656-409a-8360-cc265dcf3c28)
+
+### petclinic 빌드 & Tomcat 저장
+```
+cd /usr/local/lib
+git clone https://github.com/SteveKimbespin/petclinic_btc.git //petclinic 소스파일 인스톨
+cd /usr/local/lib/petclinic_btc
+./mvnw package //메이븐 월페이퍼 빌드 시작.
+sudo cp ./target/petclinic.war /usr/local/lib/tomcat9/webapps //빌드된 war파일 -> tomcat 기본 배포 위치로 복사
+```
+
+### petclinic 배포 (in 외장 Tomcat9)
+```
+cd /usr/local/lib/tomcat9/bin
+./start.sh //톰캣 배포 디렉토리에 war가 있어서 자동 배포.
 ```
 
 You can then access petclinic here: [http://localhost:8080/petclinic](http://localhost:8080/petclinic)

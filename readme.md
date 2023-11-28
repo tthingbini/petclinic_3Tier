@@ -4,8 +4,8 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=alert_status)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=spring-petclinic_spring-framework-petclinic&metric=coverage)](https://sonarcloud.io/dashboard?id=spring-petclinic_spring-framework-petclinic)
 
-GCP Cloud 과제 수행을 위한 Java Spring 으로 개발된 Sample Application 입니다.
-AWS 
+GCP Cloud 과제 수행을 위한 Java Spring 으로 개발된 Sample Application 입니다. ~~
+AWS Linux 2를 사용하기 위해 일부 수정하였습니다.  
 
 **3-layer architecture** (i.e. presentation --> service --> repository) 로 Tomcat 에 배포하여 2 Tier 로 구성하거나
 또는 nginx 등의 Web 서버를 통해서 Tomcat 을 연결하는 3 Tier 구성을 테스트할 수 있습니다. 

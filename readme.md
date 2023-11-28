@@ -27,52 +27,33 @@ sudo yum install git -y
 ### Tomcat 설치 및 Start
 Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
 
-[ Ubuntu 18.04 : Tomcat 9 설치하는 방법 ](https://jjeongil.tistory.com/1351)
-
-Tomcat User 및 Role 추가
-
-```
-# $TOMCAT_HOME/conf/tomcat-users.xml 파일에 아래 행들을 추가
-
-    <role rolename="manager-script"/>
-    <role rolename="manager-gui"/>
-    <role rolename="manager-jmx"/>
-    <role rolename="manager-status"/>
-    <user username="tomcat" password="tomcat" roles="manager-gui,manager-script,manager-status,manager-jmx"/>
-```
-
-Tomcat 을 실행 ( 위의 Tomcat 설치 가이드를 통해서 이미 실행되어 있는 경우에는 Skip )
-
-```
-$TOMCAT_HOME/bin/catalina.sh start
-```
-### Tomcat 설치 및 Start
-Tomcat 설치 가이드를 참조하여 Tomcat 설치 후, tomcat-users.xml 에 User 및 Role 추가
-
 [ Amazon Linux2 : Tomcat 9 설치하는 방법 ](https://progtrend.blogspot.com/2018/07/aws-amazon-linux-2-tomcat-9.html)
 
 Tomcat9 설치
 
 ```
-cd /usr/local/lib // Tomcat 컴파일 디렉토리로 이동
-wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz //tomcat 컴파일 설치
-tar xvf apache-tomcat-9.0.78.tar.gz //압축해제
-mv apache-tomcat-9.0.78 ./tomcat9 //디렉토리명 수정
+# Tomcat 컴파일 디렉토리로 이동
+cd /usr/local/lib
+# tomcat 컴파일 설치
+wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.78/bin/apache-tomcat-9.0.78.tar.gz
+tar xvf apache-tomcat-9.0.78.tar.gz 
+mv apache-tomcat-9.0.78 ./tomcat9 
 ```
 
 Tomcat9 시작 및 작동 테스트
 
 ```
-cd /usr/local/lib/tomcat9/bin //톰캣 사용관련 app 디렉토리로 이동
-./start.sh // 톰캣 시작 테스트
-./shutdwon.sh // 톰캣 종료
+cd /usr/local/lib/tomcat9/bin 
+./start.sh 
+./shutdwon.sh
 ```
 
 권한 문제가 발생할 경우 유저:그룹 체크
 ```
-sudo chown -R <유저>:<그룹> <대상> //재귀적으로 대상의 유저와 그룹을 변경.
+# 재귀적으로 대상의 유저와 그룹을 변경
+sudo chown -R <유저>:<그룹> <대상> 
 ```
-톰캣 매니저 HTML출력으로 정상 작동 확인 시 종료.
+톰캣 매니저 HTML출력으로 정상 작동 확인 시 종료
 ![image](https://github.com/tthingbini/petclinic_3Tier/assets/137377076/1c7ec0ed-4656-409a-8360-cc265dcf3c28)
 
 ### petclinic 빌드 & Tomcat 저장

@@ -87,6 +87,11 @@ MySQL database 접속 설정을 하기 위해, pom.xml 파일에 정의 된 'MyS
   - db 접속 User ID 및 Password 수정
 
 ```
+# 빌드 구성 설정
+sudo vi ~/petclinic/pom.xml
+```
+
+```
 <properties>
     <jpa.database>MYSQL</jpa.database>
     <jdbc.driverClassName>com.mysql.cj.jdbc.Driver</jdbc.driverClassName>
